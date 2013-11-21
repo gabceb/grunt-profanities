@@ -23,29 +23,16 @@ module.exports = function(grunt) {
       },
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
     // Configuration to be run (and then tested).
     profanities: {
-      default_options: {
+      bad_code: {
         options: {
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+        src: ['test/fixtures/bad_code.js']
       },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+      bad_comments: {
+        src: ['test/fixtures/bad_comments.js', 'asd.js']
+      }
     },
 
     // Unit tests.
