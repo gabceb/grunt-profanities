@@ -78,3 +78,7 @@ Copyright (c) 2013 Gabriel Cebrian, released under the MIT license. Original pro
 
 ## Release History
 _(Nothing yet)_
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gabceb/grunt-profanities/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
