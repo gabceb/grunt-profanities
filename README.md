@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/grunt-profanities.png)](https://nodei.co/npm/grunt-profanities/)
+
 # grunt-profanities
 
 > Grunt task for checking the use of profanities in your code
