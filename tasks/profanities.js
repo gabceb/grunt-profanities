@@ -20,15 +20,15 @@ module.exports = function(grunt) {
       separator: ', '
     });
 
-    var profanities_words = grunt.file.readJSON("lib/profanities/en.json");
-    var profanity_arr = [];
+    var profanitiesWords = grunt.file.readJSON("lib/profanities/en.json");
+    var profanityArr = [];
 
-    profanities_words.words.forEach(function(word){
-      profanity_arr.push(RegExp.escape(word));
+    profanitiesWords.words.forEach(function(word){
+      profanityArr.push(RegExp.escape(word));
     });
 
     // Create the regexp with the global and the case insensitive modifiers
-    var profanities_regex = new RegExp(profanity_arr.join("|", "gi"));
+    var profanitiesRegex = new RegExp(profanityArr.join("|", "gi"));
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
         return grunt.file.read(filepath);
       }).join(grunt.util.normalizelf(options.separator));
 
-      var profanities = profanities_regex.exec(src);
+      var profanities = profanitiesRegex.exec(src);
 
       if(profanities === null)
       {

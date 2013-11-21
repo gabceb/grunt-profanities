@@ -27,7 +27,7 @@ exports.profanities = {
   setUp: function(done) {
     done();
   },
-  default_options: function(test) {
+  defaultOptions: function(test) {
     test.expect(1);
 
     var code = grunt.file.read('test/fixtures/bad_code.js');
@@ -36,7 +36,7 @@ exports.profanities = {
 
     test.done();
   },
-  custom_options: function(test) {
+  customOptions: function(test) {
     test.expect(1);
 
     var comments = grunt.file.read('test/fixtures/bad_comments.js');

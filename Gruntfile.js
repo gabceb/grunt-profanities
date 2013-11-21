@@ -25,12 +25,12 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     profanities: {
-      bad_code: {
+      badCode: {
         options: {
         },
         src: ['test/fixtures/bad_code.js']
       },
-      bad_comments: {
+      badComments: {
         src: ['test/fixtures/bad_comments.js', 'asd.js']
       }
     },
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'profanities', 'nodeunit']);
+  grunt.registerTask('test', ['profanities', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
