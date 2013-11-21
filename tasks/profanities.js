@@ -8,25 +8,35 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+RegExp.escape= function(s) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+module.exports = function(grunt) {
 
   grunt.registerMultiTask('profanities', 'Grunt task for checking the use of profanities in your code', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
       separator: ', '
     });
 
+    var profanities_words = grunt.file.readJSON("lib/profanities/en.json");
+    var profanity_arr = [];
+
+    profanities_words.words.forEach(function(word){
+      profanity_arr.push(RegExp.escape(word));
+    });
+
+    // Create the regexp with the global and the case insensitive modifiers
+    var profanities_regex = new RegExp(profanity_arr.join("|", "gi"));
+
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
-      // Concat specified files.
       var src = f.src.filter(function(filepath) {
+
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
+          grunt.log.writeln('Source file "' + filepath + '" not found.');
           return false;
         } else {
           return true;
@@ -36,14 +46,23 @@ module.exports = function(grunt) {
         return grunt.file.read(filepath);
       }).join(grunt.util.normalizelf(options.separator));
 
-      // Handle options.
-      src += options.punctuation;
+      var profanities = profanities_regex.exec(src);
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+      if(profanities === null)
+      {
+        grunt.log.ok();
+      }
+      else
+      {
+        profanities.forEach(function(profanity){
+          grunt.log.error('The word "' + profanity + '" was found.');
+        });
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+        var profanityCount = profanities.length;
+
+        grunt.fail.warn(profanityCount + " profanit" + (profanityCount > 1 ? "ies were" : "y was") + " found on your file" + (profanityCount > 1 ? "s" : "") + "." );
+      }
+
     });
   });
 
