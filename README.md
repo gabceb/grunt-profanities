@@ -39,6 +39,8 @@ grunt.initConfig({
 
 ### Options
 
+languages: An array of languages. Defaults to 'en'. When different languages are used the profanities list will be read from lib/profanities/#{language}.json file. Refer to [en.json](https://github.com/gabceb/grunt-profanities/blob/master/lib/profanities/en.json) for an example.
+
 ### Usage Examples
 
 #### Default Options
@@ -66,10 +68,35 @@ grunt.initConfig({
 })
 ```
 
+#### Custom Options
+
+```js
+// spanis_profanity.js
+
+function(a){
+  alert("Esta es una chinga");
+};
+
+```
+
+```js
+// Gruntfile.js
+
+grunt.initConfig({
+  profanities: {
+    options: {
+      languages: ["en", "es"]
+    },
+    src: {
+      ['test/bad_coment.js']
+    },
+  },
+})
+```
+
 ### TO DO
 
 - Finish implementing exlude_words and any other options
-- Add ability to add profanities in different languages by having multiple profanities files
 - Show file and line where the profanity was discovered
 
 ### ZOMG Fork! Thank you!
