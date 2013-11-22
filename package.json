@@ -1,7 +1,7 @@
 {
   "name": "grunt-profanities",
   "description": "Grunt task for checking the use of profanities in your code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/gabceb/grunt-profanities",
   "author": {
     "name": "Gabriel Cebrian",
