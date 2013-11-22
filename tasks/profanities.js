@@ -17,7 +17,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('profanities', 'Grunt task for checking the use of profanities in your code', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      languages: ['en']
+      languages: ['en'],
+      ignoreWords: []
     });
 
     var profanityArr = [];
@@ -29,8 +30,12 @@ module.exports = function(grunt) {
         var profanitiesWords = grunt.file.readJSON(langFile);
 
         profanitiesWords.words.forEach(function(word){
-          // Add the word to the global array to be added to the Regex
-          profanityArr.push(RegExp.escape(word));
+
+          if(options.ignoreWords.indexOf(word.toLowerCase() ) === -1)
+          {
+            // Add the word to the global array to be added to the Regex
+            profanityArr.push(RegExp.escape(word));
+          }
 
         });
       }

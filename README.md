@@ -41,6 +41,8 @@ grunt.initConfig({
 
 languages: An array of languages. Defaults to 'en'. When different languages are used the profanities list will be read from lib/profanities/#{language}.json file. Refer to [en.json](https://github.com/gabceb/grunt-profanities/blob/master/lib/profanities/en.json) for an example.
 
+ignoreWords: An array of profanities to ignore if found on the files.
+
 ### Usage Examples
 
 #### Default Options
@@ -74,7 +76,7 @@ grunt.initConfig({
 // spanis_profanity.js
 
 function(a){
-  alert("Esta es una chinga");
+  alert("Esto es una chinga");
 };
 
 ```
@@ -96,7 +98,6 @@ grunt.initConfig({
 
 ### TO DO
 
-- Finish implementing exlude_words and any other options
 - Show file and line where the profanity was discovered
 
 ### ZOMG Fork! Thank you!

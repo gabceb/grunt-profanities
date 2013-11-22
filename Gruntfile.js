@@ -27,6 +27,7 @@ module.exports = function(grunt) {
     profanities: {
       badCode: {
         options: {
+          ignoreWords: ['fuck']
         },
         src: ['test/fixtures/bad_code.js']
       },
