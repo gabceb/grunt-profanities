@@ -106,9 +106,6 @@ You're welcome to fork this project and send pull requests. Please run `grunt` t
 
 Copyright (c) 2013 Gabriel Cebrian, released under the MIT license. Original profanity list copied from https://github.com/web-mech/badwords
 
-## Release History
-_(Nothing yet)_
-
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gabceb/grunt-profanities/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
