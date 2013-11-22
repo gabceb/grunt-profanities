@@ -31,7 +31,13 @@ module.exports = function(grunt) {
         src: ['test/fixtures/bad_code.js']
       },
       badComments: {
-        src: ['test/fixtures/bad_comments.js', 'asd.js']
+        src: ['test/fixtures/bad_comments.js']
+      },
+      spanishComments: {
+        options: {
+          languages: ['en', 'es']
+        },
+        src: ['test/fixtures/spanish_comments.js']
       }
     },
 

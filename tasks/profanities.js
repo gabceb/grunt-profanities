@@ -17,14 +17,26 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('profanities', 'Grunt task for checking the use of profanities in your code', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      separator: ', '
+      languages: ['en']
     });
 
-    var profanitiesWords = grunt.file.readJSON("lib/profanities/en.json");
     var profanityArr = [];
 
-    profanitiesWords.words.forEach(function(word){
-      profanityArr.push(RegExp.escape(word));
+    options.languages.forEach(function(lang){
+      var langFile = "lib/profanities/" + lang + ".json";
+
+      if(grunt.file.exists(langFile)){
+        var profanitiesWords = grunt.file.readJSON(langFile);
+
+        profanitiesWords.words.forEach(function(word){
+          // Add the word to the global array to be added to the Regex
+          profanityArr.push(RegExp.escape(word));
+
+        });
+      }
+      else{
+        grunt.log.writeln('Language file ' + lang + ' was not found.');
+      }
     });
 
     // Create the regexp with the global and the case insensitive modifiers
@@ -44,7 +56,7 @@ module.exports = function(grunt) {
       }).map(function(filepath) {
         // Read file source.
         return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+      }).join(grunt.util.normalizelf(','));
 
       var profanities = profanitiesRegex.exec(src);
 
